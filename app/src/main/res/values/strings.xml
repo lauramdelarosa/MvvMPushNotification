@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PushNotificationMVVM</string>
+    <string name="get_current_time">Get Current Time</string>
+</resources>
