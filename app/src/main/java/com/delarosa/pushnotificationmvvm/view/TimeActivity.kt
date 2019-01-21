@@ -16,8 +16,8 @@ class TimeActivity : AppCompatActivity(), TimeNavigator {
     @Inject
     lateinit var viewModel: TimeViewModel
 
-    @Inject
-    lateinit var context: Context
+/*    @Inject
+    lateinit var context: Context*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -35,6 +35,7 @@ class TimeActivity : AppCompatActivity(), TimeNavigator {
     }
 
     override fun openPushNotification() {
-        startActivity(Intent(context, MainActivity::class.java))
+        //     startActivity(Intent(context, MainActivity::class.java))
+     startActivity(Intent(this@TimeActivity, MainActivity::class.java))
     }
 }
