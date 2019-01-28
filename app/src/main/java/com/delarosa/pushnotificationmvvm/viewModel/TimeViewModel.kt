@@ -4,10 +4,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.delarosa.pushnotificationmvvm.model.TimeDto
 import com.delarosa.pushnotificationmvvm.model.TimeRepository
-import com.delarosa.pushnotificationmvvm.view.TimeNavigator
 
-class TimeViewModel(val timeRepository: TimeRepository, val timeNavigator: TimeNavigator) : ViewModel() {
-
+class TimeViewModel(val timeRepository: TimeRepository) : ViewModel() {
 
     var actualTime = MutableLiveData<String>()
 
@@ -15,7 +13,6 @@ class TimeViewModel(val timeRepository: TimeRepository, val timeNavigator: TimeN
         actualTime.value = "La hora actual es: "
 
     }
-
 
     fun getCurrentTime() {
         val newTime = actualTime.value + getDescription(timeRepository.generateDate())
@@ -26,9 +23,10 @@ class TimeViewModel(val timeRepository: TimeRepository, val timeNavigator: TimeN
         return date.id.toString() + " " + date.time
     }
 
+    val showNotificationPanelCompletion = MutableLiveData<Void?>()
 
     fun showNotificationPanel() {
-        timeNavigator.openPushNotification()
+        showNotificationPanelCompletion.postValue(null)
     }
 
 }

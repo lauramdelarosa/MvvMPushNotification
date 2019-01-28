@@ -1,5 +1,6 @@
 package com.delarosa.pushnotificationmvvm.view
 
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -8,10 +9,11 @@ import android.support.v7.app.AppCompatActivity
 import com.delarosa.pushnotificationmvvm.databinding.ActivityTimeBinding
 import com.delarosa.pushnotificationmvvm.viewModel.TimeViewModel
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.activity_time.*
 import javax.inject.Inject
 
 
-class TimeActivity : AppCompatActivity(), TimeNavigator {
+class TimeActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModel: TimeViewModel
@@ -32,10 +34,9 @@ class TimeActivity : AppCompatActivity(), TimeNavigator {
             it.viewModel = viewModel
         }
 
-    }
+        viewModel.showNotificationPanelCompletion.observe(this, Observer {
+            startActivity(Intent(this, MainActivity::class.java))
+        })
 
-    override fun openPushNotification() {
-        //     startActivity(Intent(context, MainActivity::class.java))
-     startActivity(Intent(this@TimeActivity, MainActivity::class.java))
     }
 }

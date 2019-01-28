@@ -9,9 +9,5 @@ import dagger.Provides
 @Module
 class TimeActivityModule {
     @Provides
-    fun provideTimeViewModel() = TimeViewModel(TimeRepositoryImpl(), TimeActivity())
-
-    /* @Provides
-     @Singleton
-     fun provideContext(app: ApplicationClass): Context = app*/
+    fun provideTimeViewModel() = TimeViewModel(TimeRepositoryImpl())
 }
